@@ -111,7 +111,7 @@ export default function ToonhubHero() {
     if (animatingRef.current) return;
     animatingRef.current = true;
     setShowBio(false);
-    setActiveIndex((p) => (dir === "next" ? (p + 1) % 4 : (p + 3) % 4));
+    setActiveIndex((p) => (dir === "next" ? (p + 1) % CHARACTERS.length : (p + CHARACTERS.length - 1) % CHARACTERS.length));
     window.setTimeout(() => {
       animatingRef.current = false;
     }, DURATION);
