@@ -48,7 +48,35 @@ const CHARACTERS: Character[] = [
     personality: ["Chill", "Poetic", "Loyal"],
     bio: "Azure moves at the speed of clouds. A late-night thinker who collects songs, sunsets and small stories — the one who always texts back at 2AM.",
   },
+  {
+    src: "/sunny.png",
+    bg: "#FFC847",
+    panel: "#FFD66D",
+    name: "SUNNY",
+    tagline: "The Ray Maker",
+    personality: ["Radiant", "Optimistic", "Energetic"],
+    bio: "Sunny is the first ray of light after a long night. She carries warmth in every word, turns ordinary mornings into celebrations, and believes every day deserves a smile.",
+  },
+  {
+    src: "/violet.png",
+    bg: "#7B61FF",
+    panel: "#9A86FF",
+    name: "VIOLET",
+    tagline: "The Night Dreamer",
+    personality: ["Mystical", "Gentle", "Imaginative"],
+    bio: "Violet wanders between waking and dreaming. She reads constellations like bedtime stories, hums lullabies to the moon, and finds magic in the quiet corners of midnight.",
+  },
+  {
+    src: "/coral.png",
+    bg: "#2EC4B6",
+    panel: "#55D3C8",
+    name: "CORAL",
+    tagline: "The Tide Dancer",
+    personality: ["Playful", "Fluid", "Curious"],
+    bio: "Coral rides every wave like it was made for her. She collects shells, secrets, and splashy ideas — a curious soul who believes the ocean is just a giant playground.",
+  },
 ];
+
 
 const EASE = "cubic-bezier(0.4,0,0.2,1)";
 const DURATION = 650;
@@ -83,7 +111,7 @@ export default function ToonhubHero() {
     if (animatingRef.current) return;
     animatingRef.current = true;
     setShowBio(false);
-    setActiveIndex((p) => (dir === "next" ? (p + 1) % 4 : (p + 3) % 4));
+    setActiveIndex((p) => (dir === "next" ? (p + 1) % CHARACTERS.length : (p + CHARACTERS.length - 1) % CHARACTERS.length));
     window.setTimeout(() => {
       animatingRef.current = false;
     }, DURATION);
@@ -101,8 +129,9 @@ export default function ToonhubHero() {
 
   const active = CHARACTERS[activeIndex];
   const center = activeIndex;
-  const left = (activeIndex + 3) % 4;
-  const right = (activeIndex + 1) % 4;
+  const left = (activeIndex + CHARACTERS.length - 1) % CHARACTERS.length;
+  const right = (activeIndex + 1) % CHARACTERS.length;
+
 
   const itemStyle = (i: number): CSSProperties => {
     const base: CSSProperties = {
@@ -285,7 +314,7 @@ export default function ToonhubHero() {
             className="text-[10px] font-semibold uppercase mb-2"
             style={{ color: "#fff", opacity: 0.7, letterSpacing: "0.24em" }}
           >
-            Figurine 0{activeIndex + 1} / 04
+            Figurine 0{activeIndex + 1} / 0{CHARACTERS.length}
           </div>
           <h1
             key={active.name + "-h"}
