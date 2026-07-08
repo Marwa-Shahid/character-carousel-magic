@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
+import raccoonBoyAsset from "@/assets/raccoon-boy.jpg.asset.json";
+import headphonesGirlAsset from "@/assets/headphones-girl.jpg.asset.json";
+
 
 type Character = {
   src: string;
@@ -75,7 +78,26 @@ const CHARACTERS: Character[] = [
     personality: ["Playful", "Fluid", "Curious"],
     bio: "Coral rides every wave like it was made for her. She collects shells, secrets, and splashy ideas — a curious soul who believes the ocean is just a giant playground.",
   },
+  {
+    src: raccoonBoyAsset.url,
+    bg: "#8FB8C4",
+    panel: "#A8CAD4",
+    name: "FINN",
+    tagline: "The Woodland Wanderer",
+    personality: ["Gentle", "Adventurous", "Loyal"],
+    bio: "Finn roams forests barefoot with his raccoon best friend Rusty on his shoulder. A quiet explorer who talks to trees, trades secrets with owls, and always finds his way home by starlight.",
+  },
+  {
+    src: headphonesGirlAsset.url,
+    bg: "#E39B3A",
+    panel: "#EDB25E",
+    name: "LULU",
+    tagline: "The Sound Sailor",
+    personality: ["Dreamy", "Free", "Melodic"],
+    bio: "Lulu lives inside her headphones. Every beat is a new city, every chorus a new sky — she dances through ordinary days like each one has its own soundtrack made just for her.",
+  },
 ];
+
 
 
 const EASE = "cubic-bezier(0.4,0,0.2,1)";
