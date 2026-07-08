@@ -314,7 +314,7 @@ export default function ToonhubHero() {
             className="text-[10px] font-semibold uppercase mb-2"
             style={{ color: "#fff", opacity: 0.7, letterSpacing: "0.24em" }}
           >
-            Figurine 0{activeIndex + 1} / 04
+            Figurine 0{activeIndex + 1} / 0{CHARACTERS.length}
           </div>
           <h1
             key={active.name + "-h"}
