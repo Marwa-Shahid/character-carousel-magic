@@ -211,31 +211,6 @@ export default function ToonhubHero() {
           </div>
         </header>
 
-        {/* Character NAME as giant ghost text (was "3D SHAPE") */}
-        <div
-          className="absolute inset-x-0 flex items-center justify-center pointer-events-auto select-none"
-          style={{ zIndex: 2, top: "18%" }}
-          onClick={() => setShowBio((s) => !s)}
-        >
-          <span
-            key={active.name}
-            style={{
-              fontFamily: "Anton, sans-serif",
-              fontSize: "clamp(90px, 28vw, 380px)",
-              fontWeight: 900,
-              color: "#fff",
-              opacity: 1,
-              lineHeight: 1,
-              textTransform: "uppercase",
-              letterSpacing: "-0.02em",
-              whiteSpace: "nowrap",
-              animation: "toonhub-pop 650ms cubic-bezier(0.4,0,0.2,1)",
-              cursor: "pointer",
-            }}
-          >
-            {active.name}
-          </span>
-        </div>
 
         {/* Tagline pill under the giant name */}
         <div
