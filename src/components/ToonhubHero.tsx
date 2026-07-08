@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
-import raccoonBoyAsset from "@/assets/raccoon-boy.jpg.asset.json";
-import headphonesGirlAsset from "@/assets/headphones-girl.jpg.asset.json";
+import raccoonBoyAsset from "@/assets/raccoon-boy.png.asset.json";
+import headphonesGirlAsset from "@/assets/headphones-girl.png.asset.json";
 
 
 type Character = {
