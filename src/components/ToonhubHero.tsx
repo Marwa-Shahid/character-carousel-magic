@@ -129,8 +129,9 @@ export default function ToonhubHero() {
 
   const active = CHARACTERS[activeIndex];
   const center = activeIndex;
-  const left = (activeIndex + 3) % 4;
-  const right = (activeIndex + 1) % 4;
+  const left = (activeIndex + CHARACTERS.length - 1) % CHARACTERS.length;
+  const right = (activeIndex + 1) % CHARACTERS.length;
+
 
   const itemStyle = (i: number): CSSProperties => {
     const base: CSSProperties = {
