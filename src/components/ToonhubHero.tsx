@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
-import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
-import raccoonBoyAsset from "@/assets/raccoon-boy.png.asset.json";
-import headphonesGirlAsset from "@/assets/headphones-girl.png.asset.json";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import NavBar from "@/components/NavBar";
 
 
 type Character = {
@@ -10,6 +9,7 @@ type Character = {
   panel: string;
   name: string;
   tagline: string;
+  year: string;
   personality: string[];
   bio: string;
 };
@@ -21,6 +21,7 @@ const CHARACTERS: Character[] = [
     panel: "#F79B7F",
     name: "EMBER",
     tagline: "The Spark Starter",
+    year: "2022",
     personality: ["Bold", "Fearless", "Warm"],
     bio: "Ember lights up every room she enters. A restless dreamer who turns wild ideas into unstoppable action — the friend that convinces you to jump first and plan later.",
   },
@@ -30,6 +31,7 @@ const CHARACTERS: Character[] = [
     panel: "#85CC92",
     name: "MOSS",
     tagline: "The Quiet Genius",
+    year: "2022",
     personality: ["Thoughtful", "Curious", "Grounded"],
     bio: "Moss listens more than he speaks and notices everything. A patient tinkerer who finds beauty in slow, careful making — the calm center when everyone else spirals.",
   },
@@ -39,6 +41,7 @@ const CHARACTERS: Character[] = [
     panel: "#ED9DC4",
     name: "BLOOM",
     tagline: "The Soft Rebel",
+    year: "2023",
     personality: ["Playful", "Kind", "Unfiltered"],
     bio: "Bloom laughs loud, dresses louder, and believes softness is a superpower. She'll hand you a compliment and a paintbrush in the same breath.",
   },
@@ -48,24 +51,27 @@ const CHARACTERS: Character[] = [
     panel: "#8DC4FF",
     name: "AZURE",
     tagline: "The Dream Drifter",
+    year: "2023",
     personality: ["Chill", "Poetic", "Loyal"],
     bio: "Azure moves at the speed of clouds. A late-night thinker who collects songs, sunsets and small stories — the one who always texts back at 2AM.",
   },
   {
-    src: raccoonBoyAsset.url,
+    src: "/FINN.png",
     bg: "#8FB8C4",
     panel: "#A8CAD4",
     name: "FINN",
     tagline: "The Woodland Wanderer",
+    year: "2024",
     personality: ["Gentle", "Adventurous", "Loyal"],
     bio: "Finn roams forests barefoot with his raccoon best friend Rusty on his shoulder. A quiet explorer who talks to trees, trades secrets with owls, and always finds his way home by starlight.",
   },
   {
-    src: headphonesGirlAsset.url,
+    src: "/LULU.png",
     bg: "#E39B3A",
     panel: "#EDB25E",
     name: "LULU",
     tagline: "The Sound Sailor",
+    year: "2024",
     personality: ["Dreamy", "Free", "Melodic"],
     bio: "Lulu lives inside her headphones. Every beat is a new city, every chorus a new sky — she dances through ordinary days like each one has its own soundtrack made just for her.",
   },
@@ -75,6 +81,15 @@ const CHARACTERS: Character[] = [
 
 const EASE = "cubic-bezier(0.4,0,0.2,1)";
 const DURATION = 650;
+const CHARACTER_IMAGE_STYLE: CSSProperties = {
+  width: "100%",
+  height: "100%",
+  maxWidth: "100%",
+  maxHeight: "100%",
+  objectFit: "contain",
+  objectPosition: "bottom center",
+  display: "block",
+};
 
 const GRAIN_SVG =
   "data:image/svg+xml;utf8," +
@@ -207,33 +222,7 @@ export default function ToonhubHero() {
         />
 
         {/* Top nav */}
-        <header
-          className="absolute top-0 inset-x-0 flex items-center justify-between px-4 sm:px-10 py-5"
-          style={{ zIndex: 60 }}
-        >
-          <div
-            className="text-xs font-semibold uppercase flex items-center gap-2"
-            style={{ color: "#fff", opacity: 0.95, letterSpacing: "0.22em" }}
-          >
-            <Sparkles size={14} strokeWidth={2.5} />
-            TOONHUB
-          </div>
-          <nav
-            className="hidden sm:flex items-center gap-8 text-xs font-semibold uppercase"
-            style={{ color: "#fff", opacity: 0.9, letterSpacing: "0.18em" }}
-          >
-            <a href="#" className="hover:opacity-70 transition-opacity">Shop</a>
-            <a href="#" className="hover:opacity-70 transition-opacity">Drops</a>
-            <a href="#" className="hover:opacity-70 transition-opacity">Story</a>
-            <a href="#" className="hover:opacity-70 transition-opacity">Contact</a>
-          </nav>
-          <div
-            className="text-xs font-semibold uppercase"
-            style={{ color: "#fff", opacity: 0.9, letterSpacing: "0.18em" }}
-          >
-            Bag (0)
-          </div>
-        </header>
+        <NavBar />
 
 
         {/* Tagline pill under the giant name */}
@@ -259,12 +248,14 @@ export default function ToonhubHero() {
         <div className="absolute inset-0" style={{ zIndex: 3 }}>
           {CHARACTERS.map((img, i) => (
             <div key={i} style={itemStyle(i)} onClick={() => (i === center ? setShowBio((s) => !s) : jumpTo(i))}>
-              <img
-                src={img.src}
-                alt={img.name}
-                draggable={false}
-                style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "bottom center" }}
-              />
+              <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+                <img
+                  src={img.src}
+                  alt={img.name}
+                  draggable={false}
+                  style={CHARACTER_IMAGE_STYLE}
+                />
+              </div>
             </div>
           ))}
         </div>
@@ -309,7 +300,7 @@ export default function ToonhubHero() {
             className="text-[10px] font-semibold uppercase mb-2"
             style={{ color: "#fff", opacity: 0.7, letterSpacing: "0.24em" }}
           >
-            Figurine 0{activeIndex + 1} / 0{CHARACTERS.length}
+            Character 0{activeIndex + 1} of 0{CHARACTERS.length}
           </div>
           <h1
             key={active.name + "-h"}
@@ -325,7 +316,7 @@ export default function ToonhubHero() {
           >
             {active.name}
             <span className="block text-xs sm:text-sm font-semibold mt-1 tracking-widest" style={{ fontFamily: "Inter, sans-serif", opacity: 0.85 }}>
-              {active.tagline}
+              {active.tagline} · {active.year}
             </span>
           </h1>
           <div className="flex flex-wrap gap-1.5 mb-4 sm:mb-5">
@@ -395,7 +386,7 @@ export default function ToonhubHero() {
             onMouseEnter={(e) => (e.currentTarget.style.opacity = "1")}
             onMouseLeave={(e) => (e.currentTarget.style.opacity = "0.95")}
           >
-            SHOP {active.name}
+            MEET {active.name}
             <ArrowRight className="w-5 h-5 sm:w-8 sm:h-8 ml-2" strokeWidth={2.25} color="#fff" />
           </a>
         </div>
